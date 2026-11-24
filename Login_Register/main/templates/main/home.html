@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Home{% endblock %}
+{% block content %}
+<main class="auth-card home-card">
+    <header class="card-heading">
+        <h1>Welcome, {{ request.user.username }}</h1>
+        <p>You are logged in and ready to explore.</p>
+    </header>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="primary-button" type="submit">Log out</button>
+    </form>
+</main>
+{% endblock %}

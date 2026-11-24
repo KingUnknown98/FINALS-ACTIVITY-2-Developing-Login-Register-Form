@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+<main class="auth-card login-card">
+    <header class="card-heading">
+        <h1>Welcome</h1>
+        <p>Log in to continue exploring</p>
+    </header>
+
+    {% if messages %}
+        <div class="messages" role="alert">
+            {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        <label class="visually-hidden" for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="Username" autocomplete="username" required autofocus>
+        <label class="visually-hidden" for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" required>
+        <span class="forgot-link">Forgot password?</span>
+        <button class="primary-button" type="submit">Login</button>
+    </form>
+
+    <p class="account-prompt">Don't have an account?</p>
+    <a class="text-link" href="{% url 'register' %}">Create account</a>
+</main>
+{% endblock %}
